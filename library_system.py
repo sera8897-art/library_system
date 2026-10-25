@@ -3,7 +3,7 @@ class Book:
     total_books = 0  
 
     def __init__(self, title, author):
-        self.title = title          
+        self.__title = title          
         self.author = author      
         self.is_borrowed = False     
         Book.total_books += 1
