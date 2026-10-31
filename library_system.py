@@ -4,30 +4,30 @@ class Book:
 
     def __init__(self, title, author):
         self.__title = title          
-        self.author = author      
-        self.is_borrowed = False     
+        self.__author = author      
+        self.__is_borrowed = False     
         Book.total_books += 1
 
     def __str__(self):
         """Special method to return a string representation of the book object."""
-        status = "Borrowed" if self.is_borrowed else "Available"
+        status = "Borrowed" if self.__is_borrowed else "Available"
         return f"Book: '{self.title}' by {self.author} [Status: {status}]"
 
     def borrow_book(self):
         """Method to borrow the book."""
-        if not self.is_borrowed:
-            self.is_borrowed = True
-            print(f"Successfully borrowed: '{self.title}'")
+        if not self.__is_borrowed:
+            self.__is_borrowed = True
+            print(f"Successfully borrowed: '{self.__title}'")
         else:
-            print(f"Sorry, '{self.title}' is already borrowed!")
+            print(f"Sorry, '{self.__title}' is already borrowed!")
 
     def return_book(self):
         """Method to return the book."""
-        if self.is_borrowed:
-            self.is_borrowed = False
-            print(f"Successfully returned: '{self.title}'")
+        if self.__is_borrowed:
+            self.__is_borrowed = False
+            print(f"Successfully returned: '{self.__title}'")
         else:
-            print(f"'{self.title}' is already available in the library!")
+            print(f"'{self.__title}' is already available in the library!")
 
 
 class Library: 
