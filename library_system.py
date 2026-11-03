@@ -8,6 +8,22 @@ class Book:
         self.__is_borrowed = False     
         Book.total_books += 1
 
+    def _get_title(self):
+        return self.__title
+
+    def set_title(self,title):
+        if title:
+            self.__title=title
+     def get_author(self):
+         return self.__author
+
+     def set_author(self,author):
+         if author:
+           self.__author=author
+
+     def get_is_borrowed(self):
+         return self.__is_borrowed
+
     def __str__(self):
         """Special method to return a string representation of the book object."""
         status = "Borrowed" if self.__is_borrowed else "Available"
