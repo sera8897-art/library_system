@@ -2,34 +2,42 @@ from library_system import Book, Library
 
 if __name__ == "__main__":
     print("=== Starting Library Management System ===\n")
+
+    # 1.Create a library instance
     my_library = Library("City University Library")
+    print(f"Library Name: {my_library.name}")
 
-# Create book instances using the constructor
-book1 = Book("Clean Code", "Robert Martin")
-book2 = Book("Python Crash Course", "Eric Matthes")
+    # 2. Update the library name using the setter
+    my_library.name = "Central Academic Library"
+    print(f"Updated Library Name: {my_library.name}\n")
 
-# Add books to the library collection
-my_library.add_book(book1)
-my_library.add_book(book2)
+    # 3. Create book instances
+    book1 = Book("The Great Gatsby", "F. Scott Fitzgerald")
+    book2 = Book("Python Crash Course", "Eric Matthes")
 
-# Display catalog before borrowing
-my_library.show_catalog()
+    # 4. Add books to the library collection
+    my_library.add_book(book1)
+    my_library.add_book(book2)
 
-#Test borrowing a book
-print("=== Borrowing Process ===")
-book1.borrow_book()
+    # 5. Display the library catalog
+    my_library.show_catalog()
 
-# Display catalog after borrowing to check status update
-my_library.show_catalog()
+    # 6. Borrow a book
+    book1.borrow_book()
+    my_library.show_catalog()
 
-# Test returning the book
-print("=== Returning Process ===")
-book1.return_book()
+    # 7. Attempt to borrow the same book again
+    book1.borrow_book()
+    my_library.show_catalog()
 
-# Display final catalog status
-my_library.show_catalog()
+    # 8. Return the borrowed book
+    book1.return_book()
+    my_library.show_catalog()
 
-print("=== Additional System Information ===")
-print(Library.library_info())
-print(Library.library_rules())
+    # 9. Attempt to return the same book again
+    book1.return_book()
+    my_library.show_catalog()
+
+    print("\n=== Library Rules ===")
+    print(Library.library_rules())
 
