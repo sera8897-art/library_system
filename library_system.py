@@ -34,37 +34,44 @@ class Library:
     """A class to represent the library system containing a collection of books."""
 
     def __init__(self, name):
-        self.__name = name
-        self.__books_list = [] 
+        self._name = name
+        self._books_list = [] 
 
+    # getter for name    
     @property
     def name(self):
-        return self.__name    
+        return self._name 
+       
+    # setter for name
+    @name.setter
+    def name(self, new_name):
+        self._name = new_name
+
+    @property
+    def books_list(self):
+        return self._books_list
 
     def add_book(self, book_obj):
         """Method to add a book to the library catalog."""
-        self.__books_list.append(book_obj)
-        print(f"Added book: '{book_obj.title}' to {self.__name}")
+        self._books_list.append(book_obj)
+        print(f"Added book to {self._name}")
 
     def show_catalog(self):
         """Method to display all books in the library."""
-        print(f"\n--- 📚 Catalog of {self.__name} ---")
+        print(f"\n--- 📚 Catalog of {self._name} ---")
 
-        if not self.__books_list:
+        if not self._books_list:
             print("The library is currently empty.")
-        for book in self.__books_list:
+        for book in self._books_list:
             print(book)
-        print(f"Total Registered Books: {Book.total_books}\n")
-
-    @classmethod
-    def library_info(cls):
-        """Class method to provide information about the total number of books in the library."""
-        return f"Total books in the library system: {Book.total_books}"
 
     @staticmethod
     def library_rules():
         """Static method to display the library rules."""
         return "Library Rules:\n 1. Handle books with care.\n 2. Return books on time.\n 3. No food or drinks near books."
+        
+
+    
         
 
     
