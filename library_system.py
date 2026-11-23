@@ -1,4 +1,3 @@
-
 class Book:
     """A class to represent a book."""
 
@@ -59,6 +58,7 @@ class Book:
             print(f"Successfully returned: '{self.__title}'")
         else:
             print(f"'{self.__title}' is already available in the library!"
+                  
 class Library: 
     """A class to represent the library system containing a collection of books."""
 
@@ -85,22 +85,35 @@ class Library:
         self._books_list.append(book_obj)
         print(f"Added book to {self._name}")
 
+    def remove_book(self, book_obj):
+        """Method to remove a book from the library catalog."""
+        if book_obj in self._books_list:
+            self._books_list.remove(book_obj)
+            print(f"Removed book from {self._name}")
+        else:
+            print(f"Book not found in {self._name}")    
+
+    def find_book(self, title):
+        """Method to find a book by title in the library catalog."""
+        for book in self._books_list:
+            if book.get_title() == title:
+                return book
+        return None            
+
     def show_catalog(self):
         """Method to display all books in the library."""
         print(f"\n--- 📚 Catalog of {self._name} ---")
 
         if not self._books_list:
             print("The library is currently empty.")
-        for book in self._books_list:
-            print(book)
+        else:
+            for book in self._books_list:
+                print(book)
 
+    def __str__(self):
+        return f"Library: {self._name} with {len(self._books_list)} books."
+        
     @staticmethod
     def library_rules():
         """Static method to display the library rules."""
         return "Library Rules:\n 1. Handle books with care.\n 2. Return books on time.\n 3. No food or drinks near books."
-        
-
-    
-        
-
-    
