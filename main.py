@@ -1,43 +1,59 @@
-from library_system import Book, Library
-
+from library_system import * 
+ 
 if __name__ == "__main__":
     print("=== Starting Library Management System ===\n")
 
-    # 1.Create a library instance
+    # Create a library instance
     my_library = Library("City University Library")
     print(f"Library Name: {my_library.name}")
 
-    # 2. Update the library name using the setter
+    # Update the library name using the setter
     my_library.name = "Central Academic Library"
     print(f"Updated Library Name: {my_library.name}\n")
 
-    # 3. Create book instances
+    # Create book instances
     book1 = Book("The Great Gatsby", "F. Scott Fitzgerald")
     book2 = Book("Python Crash Course", "Eric Matthes")
+    book3 = ScienceBook("A Brief History of Time", "Stephen Hawking", "Physics")
 
-    # 4. Add books to the library collection
+    #  Add books to the library collection
     my_library.add_book(book1)
     my_library.add_book(book2)
+    my_library.add_book(book3)
 
-    # 5. Display the library catalog
+    #find a book by title
+    found_book = my_library.find_book("The Great Gatsby")
+    if found_book:
+        print(f"\nFound book: {found_book}")
+    else:
+        print("\nBook not found in the library.")
+
+    # Remove a book
+    my_library.remove_book(book2) 
+
+    # Display the library catalog
     my_library.show_catalog()
 
-    # 6. Borrow a book
+    # Borrow a book
     book1.borrow_book()
     my_library.show_catalog()
 
-    # 7. Attempt to borrow the same book again
+    # Attempt to borrow the same book again
     book1.borrow_book()
     my_library.show_catalog()
 
-    # 8. Return the borrowed book
+    # Return the borrowed book
     book1.return_book()
     my_library.show_catalog()
 
-    # 9. Attempt to return the same book again
+    # Attempt to return the same book again
     book1.return_book()
     my_library.show_catalog()
+
+    # Display total number of books in the library
+    print(f"\nTotal books in the library: {Library.get_total_books()}")
 
     print("\n=== Library Rules ===")
     print(Library.library_rules())
+
 
