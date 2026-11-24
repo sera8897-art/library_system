@@ -6,7 +6,7 @@ class Book:
         self._title = title
         self._author = author
         self._is_borrowed = False
-        type(self).total_books += 1
+        Book.total_books += 1
 
     # getter and setter for title 
     @property
@@ -81,8 +81,8 @@ class ScienceBook(Book):
         return False
 
     def __str__(self):
-        return f"Science Book: '{self.title}' by {self.author} [Subject: {self.subject}] [Status: {self.status}]" 
-        
+        return f"Science Book: '{self.title}' by {self.author} [Subject: {self.subject}] [Status: {self.status}]"
+
 class Library: 
     """A class to represent the library system containing a collection of books."""
 
@@ -120,7 +120,7 @@ class Library:
     def find_book(self, title):
         """Method to find a book by title in the library catalog."""
         for book in self._books_list:
-            if book.get_title() == title:
+            if book.title == title:
                 return book
         return None            
 
@@ -141,3 +141,4 @@ class Library:
     def library_rules():
         """Static method to display the library rules."""
         return "Library Rules:\n 1. Handle books with care.\n 2. Return books on time.\n 3. No food or drinks near books."
+
