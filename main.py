@@ -51,7 +51,7 @@ if __name__ == "__main__":
     my_library.show_catalog()
 
     # Display total number of books in the library
-    print(f"\nTotal books in the library: {Library.get_total_books()}")
+    print(f"\nTotal books in the library: {Book.get_total_books()}")
 
     print("\n=== Library Rules ===")
     print(Library.library_rules())
