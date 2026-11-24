@@ -1,64 +1,88 @@
 class Book:
     """A class to represent a book."""
-
     total_books = 0
 
-    def _init_(self, title, author):
-        self.__title = title
-        self.__author = author
-        self.__is_borrowed = False
-        Book.total_books += 1
+    def __init__(self, title, author):
+        self._title = title
+        self._author = author
+        self._is_borrowed = False
+        type(self).total_books += 1
 
-    def get_title(self):
-        return self.__title
-
-    def set_title(self, title):
-        if self.is_valid_text(title):
-            self.__title = title
+    # getter and setter for title 
+    @property
+    def title(self):
+        return self._title
+    
+    @title.setter
+    def title(self, new_title):
+        if isinstance(new_title, str) and bool(new_title.strip()):
+            self._title = new_title
             return True
         return False
+    
+    # getter and setter for author
+    @property
+    def author(self):
+        return self._author
 
-    def get_author(self):
-        return self.__author
-
-    def set_author(self, author):
-        if self.is_valid_text(author):
-            self.__author = author
+    @author.setter
+    def author(self, new_author):
+        if isinstance(new_author, str) and bool(new_author.strip()):
+            self._author = new_author
             return True
         return False
+    
+    # getter for is_borrowed returns True if the book is borrowed, False otherwise
+    @property
+    def is_borrowed(self):
+        return self._is_borrowed
 
-    def get_is_borrowed(self):
-        return self.__is_borrowed
+    # status property returns "Borrowed" if the book is borrowed, "Available" otherwise
+    @property
+    def status(self):
+        return "Borrowed" if self._is_borrowed else "Available"
 
     @classmethod
     def get_total_books(cls):
         return cls.total_books
 
-    @staticmethod
-    def is_valid_text(text):
-        return isinstance(text, str) and bool(text.strip())
-
-    @property
-    def status(self):
-        return "Borrowed" if self.__is_borrowed else "Available"
-
-    def _str_(self):
+    def __str__(self):
         return f"Book: '{self._title}' by {self._author} [Status: {self.status}]"
 
     def borrow_book(self):
-        if not self.__is_borrowed:
-            self.__is_borrowed = True
-            print(f"Successfully borrowed: '{self.__title}'")
+        if not self._is_borrowed:
+            self._is_borrowed = True
+            print(f"Successfully borrowed: '{self._title}'")
         else:
-            print(f"Sorry, '{self.__title}' is already borrowed!")
+            print(f"Sorry, '{self._title}' is already borrowed!")
 
     def return_book(self):
-        if self.__is_borrowed:
-            self.__is_borrowed = False
-            print(f"Successfully returned: '{self.__title}'")
+        if self._is_borrowed:
+            self._is_borrowed = False
+            print(f"Successfully returned: '{self._title}'")
         else:
-            print(f"'{self.__title}' is already available in the library!"
-                  
+            print(f"'{self._title}' is already available in the library!")
+
+class ScienceBook(Book):
+    """A subclass of Book specifically for science books."""
+    def __init__(self, title, author, subject):
+        super().__init__(title, author)
+        self._subject = subject
+
+    @property
+    def subject(self):
+        return self._subject
+
+    @subject.setter
+    def subject(self, new_subject):
+        if isinstance(new_subject, str) and bool(new_subject.strip()):
+            self._subject = new_subject
+            return True
+        return False
+
+    def __str__(self):
+        return f"Science Book: '{self.title}' by {self.author} [Subject: {self.subject}] [Status: {self.status}]" 
+        
 class Library: 
     """A class to represent the library system containing a collection of books."""
 
